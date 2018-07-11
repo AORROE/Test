@@ -9,12 +9,14 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.arrow.test.R;
+import com.arrow.utils.MyUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,6 +42,7 @@ public class SocketActivity extends AppCompatActivity implements View.OnClickLis
 
     @SuppressLint("HandlerLeak")
     private Handler handler= new Handler(){
+        @SuppressLint("SetTextI18n")
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -89,6 +92,7 @@ public class SocketActivity extends AppCompatActivity implements View.OnClickLis
         super.onDestroy();
     }
 
+    @SuppressLint("SimpleDateFormat")
     private String formatDateTime(long time) {
         return new SimpleDateFormat("(HH:mm:ss)").format(new Date(time));
     }
@@ -97,7 +101,7 @@ public class SocketActivity extends AppCompatActivity implements View.OnClickLis
         Socket socket = null;
         while (socket == null){
             try {
-                socket = new Socket("10.30.211.106",7866);
+                socket = new Socket("localhost",7866);
                 mClientSocket = socket;
                 mPrintWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),true);
                 handler.sendEmptyMessage(MESSAGE_SOCKET_CONNECTED);
@@ -105,7 +109,7 @@ public class SocketActivity extends AppCompatActivity implements View.OnClickLis
             } catch (IOException e) {
                 SystemClock.sleep(1000);
                 System.out.println("connect tcp server failed, retry...");
-                e.printStackTrace();
+                Log.e("Mytest", e.toString());
             }
 
         }
@@ -123,14 +127,15 @@ public class SocketActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
             System.out.println("quit...");
-            mPrintWriter.close();
-            br.close();
+            MyUtils.close(mPrintWriter);
+            MyUtils.close(br);
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View view) {
         if (view == mSendButton){

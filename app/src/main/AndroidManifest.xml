@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.arrow.test">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.BATTERY_STATS"
+    <uses-permission
+        android:name="android.permission.BATTERY_STATS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -16,7 +17,8 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_LOGS"
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -28,10 +30,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
     <application
         android:name="com.arrow.crashtest.CrashTestApp"
         android:allowBackup="true"
@@ -41,40 +45,50 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
         </activity>
+
         <activity
             android:name=".SecondActivity"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask" />
+
         <activity
             android:name=".ThirdActivity"
-            android:launchMode="singleTask">
-        </activity>
-        <activity android:name="com.arrow.messager.MessengerActivity"/>
+            android:launchMode="singleTask" />
 
-        <activity android:name="com.arrow.com.arrow.socket.SocketActivity"/>
+        <activity android:name="com.arrow.messager.MessengerActivity" />
+
+        <activity
+            android:name="com.arrow.com.arrow.socket.SocketActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
         <activity android:name="com.arrow.bitmaptest.PhotoWallActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         </activity>
 
         <activity android:name="com.arrow.crashtest.CrashActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         </activity>
 
         <activity android:name="com.arrow.glidetest.GlideActivity">
+        </activity>
+
+        <activity android:name="com.arrow.servicetest.PersonActivity" />
+
+        <activity android:name="com.arrow.servicetest.PersonActivity2" />
+
+        <activity android:name="com.arrow.servicetest.OtherActivity" />
+
+        <activity android:name="com.arrow.servicetest.OtherActivity2" />
+
+        <activity android:name="com.arrow.servicetest.Main4Activity"/>
+
+        <activity android:name="com.arrow.uitest.MainUiActivity"/>
+
+        <activity android:name="com.arrow.mediaplayerdemo.MusicActivity"/>
+
+        <activity android:name="com.arrow.mediaplayerdemo.MusicActivity2">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -82,11 +96,39 @@
             android:name="com.arrow.messager.MessengerService"
             android:enabled="true"
             android:exported="true" />
+
         <service
             android:name="com.arrow.com.arrow.socket.SocketService"
             android:enabled="true"
-            android:exported="true"/>
-        <service android:name="com.arrow.intentservice.LocalIntentService"/>
+            android:exported="true"
+            android:process=":remote" />
+
+        <service android:name="com.arrow.intentservice.LocalIntentService" />
+
+        <service
+            android:name="com.arrow.servicetest.ContentService1"
+            android:enabled="true"
+            android:exported="true" />
+        <service android:name="com.arrow.servicetest.ContentService2" />
+
+        <service
+            android:name="com.arrow.servicetest.NewContentService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name="com.arrow.mediaplayerdemo.MusicService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.intent.musicplayer.MusicService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.arrow.mediaplayerdemo.MusicService2"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

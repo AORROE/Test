@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/user"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/user"
+        app:actionViewClass="android.widget.SearchView" />
+
+    <item android:id="@+id/add_user"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/add_user"/>
+
+    <item android:id="@+id/del_user"
+        app:showAsAction="never"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/de_user"/>
+
+</menu>

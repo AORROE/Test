@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.arrow.utils.MyUtils;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -29,17 +31,18 @@ public class SocketService extends Service {
 
     @Override
     public void onCreate() {
+        new Thread(new TcpServer()).start();
         super.onCreate();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
 
     @Override
     public void onDestroy() {
+        mIsServiceDestoryed = true;
         super.onDestroy();
     }
 
@@ -52,11 +55,11 @@ public class SocketService extends Service {
             } catch (IOException e) {
                 System.err.println("establish tcp server failed, port:8688");
                 e.printStackTrace();
+                return;
             }
             while (!mIsServiceDestoryed){
-                final Socket client;
                 try {
-                    client = serverSocket.accept();
+                    final Socket client = serverSocket.accept();
                     System.out.println("accept");
                     new Thread(new Runnable() {
                         @Override
@@ -76,8 +79,8 @@ public class SocketService extends Service {
     }
     private void responseClient(Socket client) throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())));
-        out.print("Welcome!");
+        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())),true);
+        out.println("Welcome!");
         while (!mIsServiceDestoryed){
             String string = in.readLine();
             System.out.print("msg from client:" + string);
@@ -86,12 +89,12 @@ public class SocketService extends Service {
             }
             int i = new Random().nextInt(mDefinedMessages.length);
             String msg = mDefinedMessages[i];
-            out.print(msg);
+            out.println(msg);
             System.out.println("send :" + msg);
         }
         System.out.println("client quit.");
-        out.close();
-        in.close();
+        MyUtils.close(out);
+        MyUtils.close(in);
         client.close();
     }
 }
