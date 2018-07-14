@@ -44,50 +44,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
-
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".SecondActivity"
             android:launchMode="singleTask" />
-
         <activity
             android:name=".ThirdActivity"
             android:launchMode="singleTask" />
-
-        <activity android:name="com.arrow.messager.MessengerActivity" />
-
+        <activity android:name="com.arrow.messager.MessengerActivity">
+        </activity>
         <activity
             android:name="com.arrow.com.arrow.socket.SocketActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-
-        <activity android:name="com.arrow.bitmaptest.PhotoWallActivity">
-        </activity>
-
-        <activity android:name="com.arrow.crashtest.CrashActivity">
-        </activity>
-
-        <activity android:name="com.arrow.glidetest.GlideActivity">
-        </activity>
-
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name="com.arrow.bitmaptest.PhotoWallActivity"></activity>
+        <activity android:name="com.arrow.crashtest.CrashActivity"></activity>
+        <activity android:name="com.arrow.glidetest.GlideActivity"></activity>
         <activity android:name="com.arrow.servicetest.PersonActivity" />
-
         <activity android:name="com.arrow.servicetest.PersonActivity2" />
-
         <activity android:name="com.arrow.servicetest.OtherActivity" />
-
         <activity android:name="com.arrow.servicetest.OtherActivity2" />
-
-        <activity android:name="com.arrow.servicetest.Main4Activity"/>
-
-        <activity android:name="com.arrow.uitest.MainUiActivity"/>
-
-        <activity android:name="com.arrow.mediaplayerdemo.MusicActivity"/>
-
-        <activity android:name="com.arrow.mediaplayerdemo.MusicActivity2">
+        <activity android:name="com.arrow.servicetest.Main4Activity" />
+        <activity android:name="com.arrow.uitest.MainUiActivity" />
+        <activity android:name="com.arrow.mediaplayerdemo.MusicActivity" />
+        <activity android:name="com.arrow.mediaplayerdemo.MusicActivity2" />
+        <activity android:name="com.arrow.okhttptest.OkhttpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -96,26 +79,21 @@
             android:name="com.arrow.messager.MessengerService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name="com.arrow.com.arrow.socket.SocketService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
-
         <service android:name="com.arrow.intentservice.LocalIntentService" />
-
         <service
             android:name="com.arrow.servicetest.ContentService1"
             android:enabled="true"
             android:exported="true" />
         <service android:name="com.arrow.servicetest.ContentService2" />
-
         <service
             android:name="com.arrow.servicetest.NewContentService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name="com.arrow.mediaplayerdemo.MusicService"
             android:enabled="true"
@@ -124,11 +102,12 @@
                 <action android:name="com.intent.musicplayer.MusicService" />
             </intent-filter>
         </service>
-
         <service
             android:name="com.arrow.mediaplayerdemo.MusicService2"
             android:enabled="true"
             android:exported="true" />
+
+
     </application>
 
 </manifest>
